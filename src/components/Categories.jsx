@@ -23,7 +23,7 @@ export default class Categories extends React.Component {
   }
 
   render() {
-    const { categoriaId, query } = this.state;
+    const { query } = this.state;
     return (
       <div>
         <label htmlFor="searchBar">
