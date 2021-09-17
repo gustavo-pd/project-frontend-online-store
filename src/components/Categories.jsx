@@ -18,11 +18,27 @@ export default class Categories extends React.Component {
     console.log(fetchItem);
   }
 
+  handleChange = ({ target: { value, id } }) => {
+    this.setState({ [id]: value });
+  }
+
   render() {
-    const { categoriaId, query } = this.state;
+    const { query } = this.state;
     return (
       <div>
-        { query === '' ? 'Você ainda não realizou uma busca' : 'Busca' }
+        <label htmlFor="searchBar">
+          <input
+            type="text"
+            id="query"
+            value={ query }
+            onChange={ this.handleChange }
+          />
+        </label>
+        { query === '' && (
+          <div data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </div>
+        )}
       </div>
     );
   }
