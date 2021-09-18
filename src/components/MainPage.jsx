@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
-export default class Categories extends React.Component {
+export default class MainPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -39,6 +40,12 @@ export default class Categories extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         )}
+        <Link
+          to="./shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          Cart Icon
+        </Link>
       </div>
     );
   }
