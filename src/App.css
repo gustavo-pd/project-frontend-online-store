@@ -11,8 +11,8 @@ header {
 }
 
 .container {
-  width: 95%;
   margin: auto;
+  width: 95%;
 }
 
 .pg-inicial {
@@ -21,32 +21,32 @@ header {
 }
 
 .searchbar {
-  width: 100%;
-  margin: auto;
-  display: flex;
   align-items: center;
+  display: flex;
+  margin: auto;
+  width: 100%;
 }
 
 .search-input {
-  width: 100%;
   margin-right: 15px;
+  width: 100%;
 }
 
 .content {
-  width: 80%;
   margin: 15px auto;
+  width: 80%;
   max-width: 1100px;
 }
 
 .container.header {
   background-color: rgb(50, 167, 145);
   height: 4rem;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .row {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
@@ -59,21 +59,21 @@ img {
   max-width: 70px;
 }
 
-#header-title {
+.header-title {
   margin-left: -70px;
 }
 
 .default-text {
+  margin-top: 60px;
+  opacity: 0.7;
   font-size: 1.7rem;
   text-align: center;
-  opacity: .7;
-  margin-top: 60px;
 }
 
 .header-link, .header-link:hover {
   color: black;
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .header > * {

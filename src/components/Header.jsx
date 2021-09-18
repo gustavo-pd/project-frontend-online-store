@@ -14,7 +14,7 @@ export default class Header extends React.Component {
           </div>
           <section className="header container">
             <Link to="./" className="header-link">
-              <h1 id="header-title">Trybe-Libre</h1>
+              <h1 className="header-title">Trybe-Libre</h1>
             </Link>
           </section>
         </div>
