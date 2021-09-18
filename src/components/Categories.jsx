@@ -5,7 +5,7 @@ export default class Categories extends Component {
   render() {
     const { categoria } = this.props;
     return (
-      <div data-testid="category">
+      <div data-testid="category" className="item">
         { categoria.name }
       </div>
     );

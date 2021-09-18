@@ -32,29 +32,37 @@ export default class MainPage extends React.Component {
   render() {
     const { query, categoriaList } = this.state;
     return (
-      <div>
-        <label htmlFor="searchBar">
-          <input
-            type="text"
-            id="query"
-            value={ query }
-            onChange={ this.handleChange }
-          />
-        </label>
-        { query === '' && (
-          <div data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </div>
-        )}
-        <Link
-          to="./shoppingcart"
-          data-testid="shopping-cart-button"
-        >
-          Cart Icon
-        </Link>
-        { (categoriaList !== []) && categoriaList.map((categoria) => (
-          <Categories key={ categoria.id } categoria={ categoria } />
-        ))}
+      <div className="container pg-inicial">
+        <div className="ui vertical text menu">
+          <div className="header item">Categorias</div>
+          { (categoriaList !== []) && categoriaList.map((categoria) => (
+            <Categories key={ categoria.id } categoria={ categoria } />
+          ))}
+        </div>
+        <div className="content">
+          <section className="searchbar">
+            <div className="ui icon input search-input">
+              <i className="search left icon" />
+              <input
+                type="text"
+                id="query"
+                value={ query }
+                onChange={ this.handleChange }
+              />
+            </div>
+            <Link
+              to="./shoppingcart"
+              data-testid="shopping-cart-button"
+            >
+              <i className="shopping cart big icon" />
+            </Link>
+          </section>
+          { query === '' && (
+            <div data-testid="home-initial-message" className="default-text">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </div>
+          )}
+        </div>
       </div>
     );
   }
