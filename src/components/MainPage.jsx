@@ -15,6 +15,12 @@ export default class MainPage extends React.Component {
     };
   }
 
+  filterList = (id) => {
+    this.setState({ categoriaId: id });
+    console.log(id);
+    this.handleClick();
+  }
+
   componentDidMount = async () => {
     // const { categoriaId, query } = this.state;
     const fetchAPi = await getCategories();
@@ -44,7 +50,11 @@ export default class MainPage extends React.Component {
         <div className="ui vertical text menu">
           <div className="header item">Categorias</div>
           { (categoriaList !== []) && categoriaList.map((categoria) => (
-            <Categories key={ categoria.id } categoria={ categoria } />
+            <Categories
+              key={ categoria.id }
+              categoria={ categoria }
+              onClick={ this.filterList }
+            />
           ))}
         </div>
         <div className="content">
@@ -74,7 +84,7 @@ export default class MainPage extends React.Component {
               <i className="shopping cart big icon" />
             </Link>
           </section>
-          { productList.length ? (
+          { productList.length < 1 ? (
             <div data-testid="home-initial-message" className="default-text">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </div>
