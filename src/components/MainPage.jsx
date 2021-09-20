@@ -74,7 +74,7 @@ export default class MainPage extends React.Component {
               <i className="shopping cart big icon" />
             </Link>
           </section>
-          { productList === [] ? (
+          { productList.length ? (
             <div data-testid="home-initial-message" className="default-text">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </div>
