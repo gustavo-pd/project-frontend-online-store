@@ -36,6 +36,7 @@ export default class MainPage extends React.Component {
     const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
     console.log(fetchItem.results);
     this.setState({ productList: fetchItem.results });
+    this.handleClick();
   }
 
   categoriesList(fetchAPi) {
