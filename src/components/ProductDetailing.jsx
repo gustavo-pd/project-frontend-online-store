@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from './Header';
 
 export default class ProductDetailing extends Component {
   render() {
     const { location: { state: { title, thumbnail, price, attributes } } } = this.props;
     return (
       <section data-testid="product-detail-name">
+        <Header />
         <h1>{ `${title}` }</h1>
         <img src={ thumbnail } alt={ title } />
         <div>

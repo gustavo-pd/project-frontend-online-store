@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default class ProductList extends Component {
+export default class FavoritList extends Component {
   handleClick = (product) => {
     const { onClick } = this.props;
     onClick(product);
@@ -30,13 +30,15 @@ export default class ProductList extends Component {
           data-testid="product-add-to-cart"
           onClick={ () => this.handleClick(product) }
         >
-          Add to Cart
+          Remove Card
         </button>
+        <div data-testid="shopping-cart-product-quantity">1</div>
       </div>
     );
   }
 }
-ProductList.propTypes = {
+
+FavoritList.propTypes = {
   product: PropTypes.shape([]),
   title: PropTypes.string,
   thumbnail: PropTypes.string,
