@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import MainPage from './components/MainPage';
 import ShoppingCart from './components/ShoppingCart';
+import ProductDetailing from './components/ProductDetailing';
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Header />
             <ShoppingCart />
           </Route>
+          <Route path="/details/:id" component={ ProductDetailing } />
         </BrowserRouter>
       </div>
     );
