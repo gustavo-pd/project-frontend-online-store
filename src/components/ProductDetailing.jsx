@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class ProductDetailing extends Component {
   render() {
-const { location: { state: { title, thumbnail, price, attributes } } } = this.props;
+    const { location: { state: { title, thumbnail, price, attributes } } } = this.props;
     return (
       <section data-testid="product-detail-name">
         <h1>{ `${title}` }</h1>
