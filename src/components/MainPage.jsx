@@ -16,16 +16,15 @@ export default class MainPage extends React.Component {
   }
 
   filterList = (id) => {
-    this.setState({ categoriaId: id });
+    this.setState({ categoriaId: id }, () => this.handleClick());
     console.log(id);
-    this.handleClick();
   }
 
   componentDidMount = async () => {
-    // const { categoriaId, query } = this.state;
     const fetchAPi = await getCategories();
     // const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
     this.categoriesList(fetchAPi);
+    this.handleClick();
   }
 
   handleChange = async ({ target: { value, id } }) => {
@@ -35,8 +34,7 @@ export default class MainPage extends React.Component {
   handleClick = async () => {
     const { categoriaId, query } = this.state;
     const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
-    console.log(fetchItem.results);
-    this.setState({ productList: fetchItem.results });
+    if (fetchItem) this.setState({ productList: fetchItem.results });
   }
 
   categoriesList(fetchAPi) {
