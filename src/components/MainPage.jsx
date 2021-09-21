@@ -12,6 +12,7 @@ export default class MainPage extends React.Component {
       query: '',
       categoriaList: [],
       productList: [],
+      favoritList: [],
     };
   }
 
@@ -25,6 +26,11 @@ export default class MainPage extends React.Component {
     // const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
     this.categoriesList(fetchAPi);
     this.handleClick();
+  }
+
+  addToCard = async (product) => {
+    const { favoritList } = this.state;
+    await this.setState({ favoritList: [...favoritList, product] });
   }
 
   handleChange = async ({ target: { value, id } }) => {
@@ -42,7 +48,7 @@ export default class MainPage extends React.Component {
   }
 
   render() {
-    const { query, categoriaList, productList } = this.state;
+    const { query, categoriaList, productList, favoritList } = this.state;
     return (
       <div className="container pg-inicial">
         <div className="ui vertical text menu">
@@ -76,7 +82,8 @@ export default class MainPage extends React.Component {
 
             </div>
             <Link
-              to="./shoppingcart"
+              to={ { pathname: '/shoppingcart',
+                state: { favoritList } } }
               data-testid="shopping-cart-button"
             >
               <i className="shopping cart big icon" />
@@ -89,7 +96,11 @@ export default class MainPage extends React.Component {
           ) : (
             <div data-testid="home-initial-message" className="default-text">
               { productList.map((product) => (
-                <ProductList key={ product.id } product={ product } />))}
+                <ProductList
+                  key={ product.id }
+                  product={ product }
+                  onClick={ this.addToCard }
+                />))}
             </div>
           )}
         </div>

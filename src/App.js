@@ -16,11 +16,16 @@ class App extends React.Component {
             <Header />
             <MainPage />
           </Route>
-          <Route path="/shoppingcart">
-            <Header />
-            <ShoppingCart />
-          </Route>
-          <Route path="/details/:id" component={ ProductDetailing } />
+          <Route
+            path="/shoppingcart"
+            render={ (props) => (
+              <div>
+                <Header />
+                <ShoppingCart { ...props } />
+              </div>
+            ) }
+          />
+          <Route exact path="/details/:id" component={ ProductDetailing } />
         </BrowserRouter>
       </div>
     );
