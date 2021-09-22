@@ -12,7 +12,7 @@ export default class ShoppingCart extends React.Component {
     console.log(favoritList);
     return (
       <div data-testid="shopping-cart-empty-message" className="default-text">
-        { !(favoritList) ? 'Seu carrinho está vazio'
+        { (favoritList.length < 1) ? <span>Seu carrinho está vazio</span>
           : favoritList.map((item) => (
             <FavoritList
               key={ item.id }
