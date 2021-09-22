@@ -20,7 +20,6 @@ class App extends React.Component {
             path="/shoppingcart"
             render={ (props) => (
               <div>
-                <Header />
                 <ShoppingCart { ...props } />
               </div>
             ) }

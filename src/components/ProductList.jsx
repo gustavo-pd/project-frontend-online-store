@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default class ProductList extends Component {
-  handleClick = (product) => {
-    const { onClick } = this.props;
-    onClick(product);
+  componentDidMount = () => {
+    const lista = localStorage.getItem('shoppingCartList');
+    if (!lista) localStorage.setItem('shoppingCartList', JSON.stringify([]));
   }
+
+  addToCart = async (product) => {
+    const lista = await JSON.parse(localStorage.getItem('shoppingCartList'));
+    const listaAtt = [...lista, product];
+    localStorage.setItem('shoppingCartList', JSON.stringify(listaAtt));
+  };
 
   render() {
     // Ajudado pelo Jean Marcel
@@ -20,15 +26,15 @@ export default class ProductList extends Component {
           data-testid="product-detail-link"
         >
           <section data-testid="product">
-            <p data-testid="shopping-cart-product-name">{ title }</p>
+            <p>{ title }</p>
             <img src={ thumbnail } alt={ title } />
             <p>{ price }</p>
           </section>
         </Link>
         <button
           type="button"
+          onClick={ () => this.addToCart(product) }
           data-testid="product-add-to-cart"
-          onClick={ () => this.handleClick(product) }
         >
           Add to Cart
         </button>

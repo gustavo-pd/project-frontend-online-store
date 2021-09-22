@@ -12,25 +12,20 @@ export default class MainPage extends React.Component {
       query: '',
       categoriaList: [],
       productList: [],
-      favoritList: [],
     };
   }
 
   filterList = (id) => {
     this.setState({ categoriaId: id }, () => this.handleClick());
-    console.log(id);
   }
 
   componentDidMount = async () => {
     const fetchAPi = await getCategories();
+    const lista = localStorage.getItem('shoppingCartList');
+    if (!lista) localStorage.setItem('shoppingCartList', JSON.stringify([]));
     // const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
     this.categoriesList(fetchAPi);
     this.handleClick();
-  }
-
-  addToCard = async (product) => {
-    const { favoritList } = this.state;
-    await this.setState({ favoritList: [...favoritList, product] });
   }
 
   handleChange = async ({ target: { value, id } }) => {
@@ -48,7 +43,7 @@ export default class MainPage extends React.Component {
   }
 
   render() {
-    const { query, categoriaList, productList, favoritList } = this.state;
+    const { query, categoriaList, productList } = this.state;
     return (
       <div className="container pg-inicial">
         <div className="ui vertical text menu">
@@ -82,8 +77,7 @@ export default class MainPage extends React.Component {
 
             </div>
             <Link
-              to={ { pathname: '/shoppingcart',
-                state: { favoritList } } }
+              to="/shoppingcart"
               data-testid="shopping-cart-button"
             >
               <i className="shopping cart big icon" />
@@ -96,11 +90,7 @@ export default class MainPage extends React.Component {
           ) : (
             <div data-testid="home-initial-message" className="default-text">
               { productList.map((product) => (
-                <ProductList
-                  key={ product.id }
-                  product={ product }
-                  onClick={ this.addToCard }
-                />))}
+                <ProductList key={ product.id } product={ product } />))}
             </div>
           )}
         </div>
