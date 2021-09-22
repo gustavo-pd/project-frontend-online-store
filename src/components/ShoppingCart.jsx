@@ -1,32 +1,44 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import FavoritList from './FavoritList';
+import ShoppingList from './ShoppingList';
 
 export default class ShoppingCart extends React.Component {
-  handleNothing = () => {
-    console.log('No futuro nos vemos!');
+  constructor() {
+    super();
+    this.state = {
+      lista: [],
+    };
   }
 
+  componentDidMount = async () => {
+    const lista = await JSON.parse(localStorage.getItem('shoppingCartList'));
+    this.addList(lista);
+  }
+
+  addList = async (lista) => {
+    this.setState({ lista });
+  };
+
   render() {
-    const { location: { state: { favoritList } } } = this.props;
-    console.log(favoritList);
+    const { lista } = this.state;
     return (
-      <div data-testid="shopping-cart-empty-message" className="default-text">
-        { (favoritList.length < 1) ? <span>Seu carrinho está vazio</span>
-          : favoritList.map((item) => (
-            <FavoritList
-              key={ item.id }
-              product={ item }
-              onClick={ this.handleNothing }
-            />
-          ))}
+      <div>
+        { (lista === []) ? (
+          <div data-testid="shopping-cart-empty-message" className="default-text">
+            Seu carrinho está vazio
+          </div>
+        ) : lista.map((item) => (
+          <ShoppingList
+            key={ item.id }
+            product={ item }
+          />
+        ))}
       </div>
     );
   }
 }
 
-ShoppingCart.propTypes = {
-  favoritList: PropTypes.arrayOf(
+/* ShoppingCart.propTypes = {
+  ShoppingList: PropTypes.arrayOf(
     PropTypes.shape([]),
   ),
-}.isRequired;
+}.isRequired; */

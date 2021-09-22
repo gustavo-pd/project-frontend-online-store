@@ -3,8 +3,20 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 
 export default class ProductDetailing extends Component {
+  componentDidMount = () => {
+    const lista = localStorage.getItem('shoppingCartList');
+    if (!lista) localStorage.setItem('shoppingCartList', JSON.stringify([]));
+  }
+
+  addToCart = async (product) => {
+    const lista = await JSON.parse(localStorage.getItem('shoppingCartList'));
+    const listaAtt = [...lista, product];
+    localStorage.setItem('shoppingCartList', JSON.stringify(listaAtt));
+  };
+
   render() {
-    const { location: { state: { title, thumbnail, price, attributes } } } = this.props;
+    const { location: { state } } = this.props;
+    const { title, thumbnail, price, attributes, id } = state;
     return (
       <section data-testid="product-detail-name">
         <Header />
@@ -21,6 +33,12 @@ export default class ProductDetailing extends Component {
           </ul>
         </div>
         <p>{ price }</p>
+        <button
+          type="button"
+          onClick={ () => this.addToCart({ title, thumbnail, price, attributes, id }) }
+        >
+          Add to Cart
+        </button>
       </section>
     );
   }
