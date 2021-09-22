@@ -4,7 +4,7 @@ import ShoppingList from './ShoppingList';
 export default class ShoppingCart extends React.Component {
   render() {
     const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
-    console.log(localStorage.getItem('shoppingCartList'));
+    console.log(lista);
     if (!lista) {
       return (
         <div data-testid="shopping-cart-empty-message" className="default-text">

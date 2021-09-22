@@ -8,11 +8,11 @@ export default class ProductList extends Component {
     if (!lista) localStorage.setItem('shoppingCartList', JSON.stringify([]));
   }
 
-  addToCart = async (product) => {
-    const lista = await JSON.parse(localStorage.getItem('shoppingCartList'));
+  addToCart = (product) => {
+    const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
     const listaAtt = [...lista, product];
     localStorage.setItem('shoppingCartList', JSON.stringify(listaAtt));
-    console.log(localStorage.getItem('shoppingCartList'));
+    // console.log(localStorage.getItem('shoppingCartList'));
   };
 
   render() {
