@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from './Header';
 
@@ -8,8 +9,8 @@ export default class ProductDetailing extends Component {
     if (!lista) localStorage.setItem('shoppingCartList', JSON.stringify([]));
   }
 
-  addToCart = async (product) => {
-    const lista = await JSON.parse(localStorage.getItem('shoppingCartList'));
+  addToCart = (product) => {
+    const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
     const listaAtt = [...lista, product];
     localStorage.setItem('shoppingCartList', JSON.stringify(listaAtt));
   };
@@ -20,6 +21,12 @@ export default class ProductDetailing extends Component {
     return (
       <section data-testid="product-detail-name">
         <Header />
+        <Link
+          to="/shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          <i className="shopping cart big icon" />
+        </Link>
         <h1>{ `${title}` }</h1>
         <img src={ thumbnail } alt={ title } />
         <div>
@@ -35,6 +42,7 @@ export default class ProductDetailing extends Component {
         <p>{ price }</p>
         <button
           type="button"
+          data-testid="product-detail-add-to-cart"
           onClick={ () => this.addToCart({ title, thumbnail, price, attributes, id }) }
         >
           Add to Cart
