@@ -12,7 +12,6 @@ export default class ProductList extends Component {
     const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
     const listaAtt = [...lista, product];
     localStorage.setItem('shoppingCartList', JSON.stringify(listaAtt));
-    // console.log(localStorage.getItem('shoppingCartList'));
   };
 
   render() {

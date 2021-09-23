@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ShoppingList from './ShoppingList';
 
 export default class ShoppingCart extends React.Component {
   render() {
     const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
-    console.log(lista);
     if (!lista) {
       return (
         <div data-testid="shopping-cart-empty-message" className="default-text">
@@ -24,6 +24,14 @@ export default class ShoppingCart extends React.Component {
             product={ item }
           />
         ))}
+        <Link to="/checkout">
+          <button
+            type="button"
+            data-testid="checkout-products"
+          >
+            Finalizar a Compra
+          </button>
+        </Link>
       </div>
     );
   }
