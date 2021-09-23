@@ -38,6 +38,10 @@ export default class ProductDetailing extends Component {
               </li>
             ))}
           </ul>
+          <form action="">
+            <input id="evaluation" type="number" />
+            <textarea data-testid="product-detail-evaluation" cols="30" rows="10" />
+          </form>
         </div>
         <p>{ price }</p>
         <button
