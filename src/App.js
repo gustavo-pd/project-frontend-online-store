@@ -6,6 +6,7 @@ import Header from './components/Header';
 import MainPage from './components/MainPage';
 import ShoppingCart from './components/ShoppingCart';
 import ProductDetailing from './components/ProductDetailing';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   render() {
@@ -24,7 +25,20 @@ class App extends React.Component {
               </div>
             ) }
           />
-          <Route exact path="/details/:id" component={ ProductDetailing } />
+          <Route
+            exact
+            path="/details/:id"
+            render={ (props) => (
+              <div>
+                <Header />
+                <ProductDetailing { ...props } />
+              </div>
+            ) }
+          />
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
         </BrowserRouter>
       </div>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from './Header';
 
 export default class ProductDetailing extends Component {
   componentDidMount = () => {
@@ -20,7 +19,6 @@ export default class ProductDetailing extends Component {
     const { title, thumbnail, price, attributes, id } = state;
     return (
       <section data-testid="product-detail-name">
-        <Header />
         <Link
           to="/shoppingcart"
           data-testid="shopping-cart-button"

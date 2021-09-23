@@ -8,12 +8,12 @@ export default class Header extends React.Component {
       <header>
         <div className="row container">
           <div className="container">
-            <Link to="./" className="header-link">
+            <Link to="../" className="header-link">
               <img className="trybewarts-header-logo" src={ logo } alt="trybe logo" />
             </Link>
           </div>
           <section className="header container">
-            <Link to="./" className="header-link">
+            <Link to="../" className="header-link">
               <h1 className="header-title">Trybe-Libre</h1>
             </Link>
           </section>

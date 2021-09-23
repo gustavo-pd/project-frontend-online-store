@@ -12,7 +12,6 @@ export default class MainPage extends React.Component {
       query: '',
       categoriaList: [],
       productList: [],
-      favoritList: [],
     };
   }
 
@@ -26,11 +25,6 @@ export default class MainPage extends React.Component {
     // const fetchItem = await getProductsFromCategoryAndQuery(query, categoriaId);
     this.categoriesList(fetchAPi);
     this.handleClick();
-  }
-
-  addToCard = async (product) => {
-    const { favoritList } = this.state;
-    await this.setState({ favoritList: [...favoritList, product] });
   }
 
   handleChange = async ({ target: { value, id } }) => {
@@ -48,7 +42,8 @@ export default class MainPage extends React.Component {
   }
 
   render() {
-    const { query, categoriaList, productList, favoritList } = this.state;
+    const { query, categoriaList, productList } = this.state;
+    const lista = JSON.parse(localStorage.getItem('shoppingCartList'));
     return (
       <div className="container pg-inicial">
         <div className="ui vertical text menu">
@@ -82,11 +77,11 @@ export default class MainPage extends React.Component {
 
             </div>
             <Link
-              to={ { pathname: '/shoppingcart',
-                state: { favoritList } } }
+              to="/shoppingcart"
               data-testid="shopping-cart-button"
             >
               <i className="shopping cart big icon" />
+              <span data-testid="shopping-cart-size">{ lista && lista.length }</span>
             </Link>
           </section>
           { productList.length < 1 ? (
@@ -99,7 +94,6 @@ export default class MainPage extends React.Component {
                 <ProductList
                   key={ product.id }
                   product={ product }
-                  onClick={ this.addToCard }
                 />))}
             </div>
           )}
